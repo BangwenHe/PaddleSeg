@@ -1,3 +1,6 @@
+data/
+export_model/
+
 # Mac system
 .DS_Store
 
