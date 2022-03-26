@@ -20,7 +20,7 @@ class DAVIS(Dataset):
         resolution (str): JPEGImgages resolution directory. Default: 480p
         edge (bool, optional): Whether to compute edge while training. Default: False
     """
-    NUM_CLASSES = 8
+    NUM_CLASSES = 9
 
     def __init__(self, transforms, dataset_root=None, mode='train', year=2017, resolution='480p', edge=False):
         self.dataset_root = dataset_root
@@ -56,8 +56,10 @@ class DAVIS(Dataset):
                 line = line.strip()
                 image_folder_path = os.path.join(img_dir, line)
                 label_folder_path = os.path.join(label_dir, line)
+                images_name = sorted(os.listdir(image_folder_path), key=lambda x: int(x.split('.')[0]))
+                labels_name = sorted(os.listdir(label_folder_path), key=lambda x: int(x.split('.')[0]))
 
-                for image_name, label_name in zip(os.listdir(image_folder_path), os.listdir(label_folder_path)):
+                for image_name, label_name in zip(images_name, labels_name):
                     image_path = os.path.join(image_folder_path, image_name)
                     label_path = os.path.join(label_folder_path, label_name)
                     self.file_list.append([image_path, label_path])

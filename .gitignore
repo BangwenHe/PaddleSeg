@@ -1,5 +1,7 @@
 data/
 export_model/
+.vscode/
+output/
 
 # Mac system
 .DS_Store

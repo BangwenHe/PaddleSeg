@@ -151,6 +151,8 @@ class Dataset(paddle.io.Dataset):
             return im, label
         else:
             im, label = self.transforms(im=image_path, label=label_path)
+            if label.max() >= self.num_classes:
+                print(label_path)
             if self.edge:
                 edge_mask = F.mask_to_binary_edge(
                     label, radius=2, num_classes=self.num_classes)

@@ -8,6 +8,7 @@ train_dataset:
       scale_step_size: 0.25
     - type: RandomPaddingCrop
       crop_size: [512, 512]
+      label_padding_value: 0
     - type: RandomHorizontalFlip
     - type: RandomDistort
       brightness_range: 0.4
@@ -30,7 +31,7 @@ iters: 40000
 
 model:
   type: SegFormer_B5
-  num_classes: 8
+  num_classes: 9
   # pretrained: https://bj.bcebos.com/paddleseg/dygraph/mix_vision_transformer_b5.tar.gz
 
 optimizer:
