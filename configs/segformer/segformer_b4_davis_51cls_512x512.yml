@@ -1,5 +1,5 @@
 train_dataset:
-  type: DAVIS
+  type: DAVIS_51CLASS
   dataset_root: data/DAVIS/
   transforms:
     - type: ResizeStepScaling
@@ -16,23 +16,25 @@ train_dataset:
       saturation_range: 0.4
     - type: Normalize
   mode: train
+  resolution: 480p_51cls
 
 val_dataset:
-  type: DAVIS
+  type: DAVIS_51CLASS
   dataset_root: data/DAVIS/
   transforms:
     - type: Resize
       target_size: [512, 512]
     - type: Normalize
   mode: val
+  resolution: 480p_51cls
 
 batch_size: 1
 iters: 160000
 
 model:
-  type: SegFormer_B5
-  num_classes: 9
-  pretrained:  https://bj.bcebos.com/paddleseg/dygraph/mix_vision_transformer_b5.tar.gz
+  type: SegFormer_B4
+  num_classes: 51
+  pretrained:  https://bj.bcebos.com/paddleseg/dygraph/mix_vision_transformer_b4.tar.gz
 
 optimizer:
   type: AdamW

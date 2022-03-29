@@ -30,9 +30,9 @@ batch_size: 1
 iters: 160000
 
 model:
-  type: SegFormer_B5
+  type: SegFormer_B4
   num_classes: 9
-  pretrained:  https://bj.bcebos.com/paddleseg/dygraph/mix_vision_transformer_b5.tar.gz
+  pretrained:  https://bj.bcebos.com/paddleseg/dygraph/mix_vision_transformer_b4.tar.gz
 
 optimizer:
   type: AdamW

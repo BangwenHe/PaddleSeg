@@ -19,16 +19,23 @@ class DAVIS(Dataset):
         year (int): DAVIS Challenge dataset year. Default: 2017
         resolution (str): JPEGImgages resolution directory. Default: 480p
         edge (bool, optional): Whether to compute edge while training. Default: False
+        num_classes (int, optional): Number of classes. Default: NUM_CLASSES
     """
     NUM_CLASSES = 9
 
-    def __init__(self, transforms, dataset_root=None, mode='train', year=2017, resolution='480p', edge=False):
+    def __init__(self, transforms, 
+                dataset_root=None, 
+                mode='train', 
+                year="2017", 
+                resolution='480p', 
+                edge=False,
+                num_classes=NUM_CLASSES):
         self.dataset_root = dataset_root
         self.transforms = Compose(transforms)
         mode = mode.lower()
         self.mode = mode
         self.file_list = list()
-        self.num_classes = self.NUM_CLASSES
+        self.num_classes = num_classes
         self.ignore_index = 255
         self.year = year
         self.resolution = resolution
@@ -42,7 +49,7 @@ class DAVIS(Dataset):
         if self.transforms is None:
             raise ValueError("`transforms` is necessary, but it is None.")
 
-        image_set_dir = os.path.join(self.dataset_root, 'ImageSets', str(self.year))
+        image_set_dir = os.path.join(self.dataset_root, 'ImageSets', self.year)
         if mode == 'train':
             file_path = os.path.join(image_set_dir, 'train.txt')
         elif mode == 'val':
